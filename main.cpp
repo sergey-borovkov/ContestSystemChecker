@@ -30,8 +30,8 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    Compiler *c = makeCompiler(languageName);
-    if(c == NULL)
+    QSharedPointer<Compiler> c = makeCompiler(languageName);
+    if(c.isNull())
     {
         printToStdout(QString("Compiling %1 is not supported\n").arg(languageName));
         return 1;
@@ -44,8 +44,6 @@ int main(int argc, char *argv[])
         printToStdout("Compile error\n");
         return 0;
     }
-
-    delete c;
 
     testDirectory.cd(pathToSubmissionFolder);
 

@@ -2,6 +2,7 @@
 #define COMPILER_H
 
 #include <QObject>
+#include <QSharedPointer>
 
 class QString;
 
@@ -36,6 +37,6 @@ public:
     virtual bool compile(const QString & path, const QString & pathToCompiledProgram);
 };
 
-Compiler *makeCompiler(const QString & languageName);
+QSharedPointer<Compiler> makeCompiler(const QString & languageName);
 
 #endif // COMPILER_H

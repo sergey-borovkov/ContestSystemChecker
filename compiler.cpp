@@ -21,16 +21,16 @@ bool CppCompiler::compile( const QString & path, const QString & pathToCompiledP
     return !exitCode;
 }
 
-Compiler * makeCompiler( const QString & languageName )
+QSharedPointer<Compiler> makeCompiler(const QString &languageName)
 {
     if(languageName == "cpp")
-        return new CppCompiler;
+        return QSharedPointer<Compiler>(new CppCompiler);
     else if (languageName == "delphi")
-        return new DelphiCompiler;
+        return QSharedPointer<Compiler>(new DelphiCompiler);
     else if(languageName == "c_sharp")
-        return new CSharpCompiler;
+        return QSharedPointer<Compiler>(new CSharpCompiler);
     else
-        return NULL;
+        return QSharedPointer<Compiler>();
 }
 
 bool DelphiCompiler::compile( const QString & path, const QString & pathToCompiledProgram )
