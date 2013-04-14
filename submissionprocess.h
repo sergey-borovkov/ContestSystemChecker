@@ -36,7 +36,7 @@ public:
     };
 
     SubmissionProcess(const ProcessParameters & parameters, QObject *parent = 0);
-    ~SubmissionProcess();
+
     void start();
     QString errorText();
     int timeLapsed;

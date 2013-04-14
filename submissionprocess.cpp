@@ -14,10 +14,6 @@ SubmissionProcess::SubmissionProcess(const ProcessParameters & parameters, QObje
     connect(&timer, SIGNAL(timeout()), SLOT(checkProcess()));
 }
 
-SubmissionProcess::~SubmissionProcess()
-{
-}
-
 void SubmissionProcess::start()
 {
     timeLapsed = 0;
