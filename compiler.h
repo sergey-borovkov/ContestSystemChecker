@@ -9,31 +9,31 @@ class Compiler
 {
 public:
     virtual ~Compiler() { }
-	virtual bool compile(const QString & path, const QString & pathToCompiledProgram) = 0;
+    virtual bool compile(const QString & path, const QString & pathToCompiledProgram) = 0;
 };
 
 class CppCompiler : public Compiler
 {
 public:
-	CppCompiler() {}
-	~CppCompiler() {}
-	virtual bool compile(const QString & path, const QString & pathToCompiledProgram);
+    CppCompiler() {}
+    ~CppCompiler() {}
+    virtual bool compile(const QString & path, const QString & pathToCompiledProgram);
 };
 
 class DelphiCompiler : public Compiler
 {
 public:
-	DelphiCompiler() {}
-	~DelphiCompiler() {}
-	virtual bool compile(const QString & path, const QString & pathToCompiledProgram);
+    DelphiCompiler() {}
+    ~DelphiCompiler() {}
+    virtual bool compile(const QString & path, const QString & pathToCompiledProgram);
 };
 
 class CSharpCompiler: public Compiler
 {
 public:
-	CSharpCompiler() {}
-	~CSharpCompiler() {}
-	virtual bool compile(const QString & path, const QString & pathToCompiledProgram);
+    CSharpCompiler() {}
+    ~CSharpCompiler() {}
+    virtual bool compile(const QString & path, const QString & pathToCompiledProgram);
 };
 
 Compiler *makeCompiler(const QString & languageName);

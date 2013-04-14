@@ -9,15 +9,15 @@
 
 class Debugger : public QThread
 {
-	Q_OBJECT
+    Q_OBJECT
 public:
-	Debugger(ProcessParameters parameters, PROCESS_INFORMATION &processInformation, QObject *parent);
+    Debugger(ProcessParameters parameters, PROCESS_INFORMATION &processInformation, QObject *parent);
 
     void run();
 
 signals:
-	void ready();
-	void runtimeError();
+    void ready();
+    void runtimeError();
 private:
     ProcessParameters parameters;
     PROCESS_INFORMATION &processInformation;

@@ -15,7 +15,7 @@ public:
 	void startChecking();
 
 private slots:
-	void processnextSubmit();
+    void processNextSubmission();
 	void checkSubmitStatus(int);
 private:
 
