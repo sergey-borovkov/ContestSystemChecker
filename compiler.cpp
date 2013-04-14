@@ -17,13 +17,14 @@ Compiler::~Compiler()
 
 bool CppCompiler::compile( const QString & path, const QString & pathToCompiledProgram)
 {
-	QString program = "cl";
+	QString program = "C:/Program Files (x86)/Microsoft Visual Studio 10.0/VC/bin/cl.exe";
 	QStringList arguments;
 	arguments << path;
 	arguments << "/W4" << "/F268435456" << "/EHsc" << "/O2" << "/DONLINE_JUDGE" << path << "-o" << pathToCompiledProgram;
 	
 	QProcess process;
-	process.setWorkingDirectory(pathToCompiledProgram.mid(0, pathToCompiledProgram.lastIndexOf('/')));
+	
+//	process.setWorkingDirectory(pathToCompiledProgram.mid(0, pathToCompiledProgram.lastIndexOf('/')));
 	process.start(program, arguments);
 	process.waitForStarted();
 	process.waitForFinished();

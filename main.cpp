@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
 	QDir testDirectory;
 	if(!testDirectory.mkpath(pathToSubmissionFolder))
 	{
-		std::cout << "Unable to create folder " << pathToSubmissionFolder.toAscii().constData();
+        std::cout << "Unable to create folder " << (WCHAR *)pathToSubmissionFolder.constData();
 		return 1;
 	}
 
@@ -58,13 +58,13 @@ int main(int argc, char *argv[])
 	}
 
 	delete c;
-
+/*
 	if(languageName == "delphi")
 	{
 		pathToProgram = pathToSubmissionFolder +
 			pathToSource.mid(pathToSource.lastIndexOf('/') + 1, pathToSource.length() - pathToSource.lastIndexOf('/') - 5) + ".exe";
 	}
-
+	*/
  	testDirectory.cd(pathToSubmissionFolder);
 
 	testDirectory.cd(QString("../../tasks/%1").arg(taskNumber));
@@ -94,6 +94,7 @@ int main(int argc, char *argv[])
 	p.programPath = pathToProgram;
 	p.memoryLimit = 1024 * 1024 * 256; 
 	p.timeLimit = 2000;
+	p.language = languageName;
 //	SubmissionProcess pp(p);
 //	pp.start();
 

@@ -34,7 +34,7 @@ void Checker::processnextSubmit()
 	currentAnswerFile = tests.answers.takeAt(0);
 
 	QString input = parameters.workingDirectory + "input.txt";
-	QString output= parameters.workingDirectory + "output.txt";
+	QString output = parameters.workingDirectory + "output.txt";
 
 	if(QFile::exists(input))
 		QFile::remove(input);
@@ -63,6 +63,12 @@ void Checker::checkSubmitStatus(int status)
 	else if(status == SubmissionProcess::ProgramStartError)
 	{
 		std::cout << "Error" << std::endl;
+		exit(0);
+	}
+
+	else if(status == SubmissionProcess::RunTimeError)
+	{
+		std::cout << "Runtime Error" << std::endl;
 		exit(0);
 	}
 

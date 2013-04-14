@@ -1,5 +1,6 @@
 #include "submissionprocess.h"
 #include "submission.h"
+#include "debugger.h"
 #include <iostream>
 
 #include <Psapi.h>
@@ -21,31 +22,12 @@ SubmissionProcess::~SubmissionProcess()
 
 void SubmissionProcess::start()
 {
-	STARTUPINFO si = {};
-	si.cb = sizeof(si);
 	timeLapsed = 0;
 
-	bool result = ::CreateProcessWithLogonW(L"Администратор", 
-		L".", 
-		L"cooler", 
-		LOGON_NETCREDENTIALS_ONLY, 
-		(WCHAR *) parameters.programPath.constData(), 
-		NULL, 
-		NORMAL_PRIORITY_CLASS | CREATE_NEW_CONSOLE | CREATE_DEFAULT_ERROR_MODE, 
-		NULL, 
-		(WCHAR *) parameters.workingDirectory.constData(),
-		&si,
-		&processInformation);
-
-
-
-	if(!result)
-	{
-		std::cout << "Failed to create process. Error code - " << GetLastError();
-		emit finished(ProgramStartError);
-	}
-
-	timer.start(Timeout);
+	Debugger *debugger = new Debugger(parameters, processInformation, this);
+	connect(debugger, SIGNAL(ready()), SLOT(startProcess()));
+	connect(debugger, SIGNAL(runtimeError()), SLOT(runtimeError()));
+	debugger->start();
 }
 
 QString SubmissionProcess::errorText()
@@ -56,9 +38,9 @@ QString SubmissionProcess::errorText()
 void SubmissionProcess::checkProcess()
 {
 	timeLapsed += Timeout;
-	
+
 	const int status = getProcessStatus();
- 	
+
 	if(status != Active)
 	{
 		processFinished(status);
@@ -119,4 +101,16 @@ void SubmissionProcess::processFinished(int exitState)
 	if(!exitState)
 		emit finished(Accepted);
 	emit finished(WrongExitCode);
+}
+
+void SubmissionProcess::startProcess()
+{	
+	timer.start(Timeout);
+}
+
+void SubmissionProcess::runtimeError()
+{
+	timeLapsed = 0;
+	timer.stop();
+	emit finished(RunTimeError);
 }

@@ -6,11 +6,13 @@ TEMPLATE = app
 TARGET = 
 DEPENDPATH += .
 INCLUDEPATH += .
+CONFIG += console
 
 # Input
-HEADERS += checker.h compiler.h submission.h submissionprocess.h
+HEADERS += checker.h compiler.h submission.h submissionprocess.h debugger.h
 SOURCES += checker.cpp \
            compiler.cpp \
            main.cpp \
            submission.cpp \
-           submissionprocess.cpp
+           submissionprocess.cpp \
+           debugger.cpp

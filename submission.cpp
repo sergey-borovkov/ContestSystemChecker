@@ -21,10 +21,10 @@ Submission::~Submission()
 
 }
 
-void Submission::parseString(const QString & string)
+void Submission::parseString(const QString &)
 {
-	QRegExp regExp("id: ");	
-	int submissionIdIndex = string.indexOf("id:");
+//	QRegExp regExp("id: ");
+//	int submissionIdIndex = string.indexOf("id:");
 //	submissionIdIndex = QString::number(string.mid());
 
 }

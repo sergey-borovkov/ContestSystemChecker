@@ -5,17 +5,17 @@
 #include <QTimer>
 #include <QString>
 
+#define NOMINMAX
 #include <windows.h>
 
 struct ProcessParameters
 {
 	QString programPath;
 	QString workingDirectory;
+	QString language;
 	int timeLimit;
 	int memoryLimit;
 };
-
-
 
 class SubmissionProcess : public QObject
 {
@@ -45,6 +45,8 @@ signals:
 	void finished(int verdict);
 private slots:
 	void checkProcess();
+	void startProcess();
+	void runtimeError();
 private:
 	enum {Active, Finished, FailFinish};
 

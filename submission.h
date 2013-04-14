@@ -7,12 +7,10 @@
 
 struct Submission
 {
-public:
 	Submission();
 	Submission(QString string);
 	~Submission();
 
-//private:
 	void parseString(const QString & string);
 	int submissionId;
 	QString sourceCode;
