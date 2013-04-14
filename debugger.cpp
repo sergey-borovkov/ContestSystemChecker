@@ -8,11 +8,6 @@ Debugger::Debugger(ProcessParameters parameters, PROCESS_INFORMATION &processInf
 
 }
 
-Debugger::~Debugger()
-{
-
-}
-
 void Debugger::run()
 {
 	STARTUPINFO si = {};

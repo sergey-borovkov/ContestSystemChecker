@@ -9,16 +9,10 @@ Checker::Checker(QObject *parent, const ProcessParameters &parameters, QStringLi
 	testNumber = 0;
 }
 
-Checker::~Checker()
-{
-
-}
-
 void Checker::startChecking()
 {
 	processnextSubmit();
 }
-
 
 void Checker::processnextSubmit()
 {

@@ -12,8 +12,8 @@ class Debugger : public QThread
 	Q_OBJECT
 public:
 	Debugger(ProcessParameters parameters, PROCESS_INFORMATION &processInformation, QObject *parent);
-	~Debugger();
-	void run();
+
+    void run();
 
 signals:
 	void ready();

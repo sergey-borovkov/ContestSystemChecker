@@ -5,16 +5,6 @@
 
 #include <QDebug>
 
-Compiler::Compiler()
-{
-
-}
-
-Compiler::~Compiler()
-{
-
-}
-
 bool CppCompiler::compile( const QString & path, const QString & pathToCompiledProgram)
 {
 	QString program = "C:/Program Files (x86)/Microsoft Visual Studio 10.0/VC/bin/cl.exe";
@@ -31,7 +21,6 @@ bool CppCompiler::compile( const QString & path, const QString & pathToCompiledP
 	QByteArray a = process.readAllStandardOutput();
 	const int exitCode = process.exitCode();
 	return !exitCode;
-
 }
 
 Compiler * makeCompiler( const QString & languageName )

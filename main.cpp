@@ -3,25 +3,15 @@
 
 #include <iostream>
 
-#include "submission.h"
 #include "submissionprocess.h"
 #include "compiler.h"
 #include "checker.h"
-
-//#define KAMI
 
 int main(int argc, char *argv[])
 {
 	QCoreApplication a(argc, argv);
 
-#ifdef KAMI
-	int submissionId = 6;
-	QString taskNumber = "F";
-	QString languageName = "cpp";
-	QString pathToSource = "C:/lang/testtest/main.cpp";
-#else
-
-	if(argc != 5)
+    if(argc != 5)
 	{
 		qDebug() << "Syntax: checker submission_id task_number language_name path_to_source";
 		return 1;
@@ -31,9 +21,8 @@ int main(int argc, char *argv[])
 	QString taskNumber = QString(argv[2]);
 	QString languageName(argv[3]);
 	QString pathToSource(argv[4]);
-#endif
 
-	QString contestFolder = "C:/Disk_H/";
+    QString contestFolder = "C:/Disk_H/";
 	QString pathToSubmissionFolder = contestFolder + "submissions/" + QString::number(submissionId) + '/';
 	QDir testDirectory;
 	if(!testDirectory.mkpath(pathToSubmissionFolder))
@@ -58,14 +47,8 @@ int main(int argc, char *argv[])
 	}
 
 	delete c;
-/*
-	if(languageName == "delphi")
-	{
-		pathToProgram = pathToSubmissionFolder +
-			pathToSource.mid(pathToSource.lastIndexOf('/') + 1, pathToSource.length() - pathToSource.lastIndexOf('/') - 5) + ".exe";
-	}
-	*/
- 	testDirectory.cd(pathToSubmissionFolder);
+
+    testDirectory.cd(pathToSubmissionFolder);
 
 	testDirectory.cd(QString("../../tasks/%1").arg(taskNumber));
 

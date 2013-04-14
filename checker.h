@@ -12,7 +12,6 @@ class Checker : public QObject
 
 public:
 	Checker(QObject *parent, const ProcessParameters &parameters, QStringList & inputs, QStringList & answers, const QString & contestFolder, QString taskNumber);
-	~Checker();
 	void startChecking();
 
 private slots:

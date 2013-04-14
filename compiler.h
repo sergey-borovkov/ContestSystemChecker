@@ -8,8 +8,7 @@ class QString;
 class Compiler
 {
 public:
-	Compiler();
-	virtual ~Compiler();
+    virtual ~Compiler() { }
 	virtual bool compile(const QString & path, const QString & pathToCompiledProgram) = 0;
 };
 
