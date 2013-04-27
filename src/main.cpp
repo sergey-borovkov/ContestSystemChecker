@@ -1,10 +1,17 @@
 #include <QtCore>
 #include <QDebug>
+#include <QtGlobal>
 
 #include "submissionprocess.h"
 #include "compiler.h"
 #include "checker.h"
 #include "util.h"
+
+
+void noMessageOutput(QtMsgType, const QMessageLogContext&, const QString &)
+{
+
+}
 
 int main(int argc, char *argv[])
 {
@@ -15,6 +22,8 @@ int main(int argc, char *argv[])
         qDebug() << "Syntax: checker submission_id task_number language_name path_to_source";
         return 1;
     }
+
+    qInstallMessageHandler(noMessageOutput);
 
     int submissionId = QString(argv[1]).toInt();
     QString taskNumber = QString(argv[2]);

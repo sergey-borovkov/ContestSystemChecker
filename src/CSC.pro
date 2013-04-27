@@ -2,6 +2,7 @@ TEMPLATE = app
 TARGET = csc
 CONFIG += console
 
+DEFINES += QT_NO_DEBUG
 # Input
 HEADERS += \
     checker.h \
