@@ -2,10 +2,12 @@
 
 #include <QProcess>
 #include <QDebug>
+#include <QSettings>
 
 bool CppCompiler::compile( const QString & path, const QString & pathToCompiledProgram)
 {
-    QString program = "C:/Program Files (x86)/Microsoft Visual Studio 10.0/VC/bin/cl.exe";
+    QSettings settings("config.ini", QSettings::IniFormat);
+    QString program = settings.value("cpp").toString();
     QStringList arguments;
     arguments << path;
     arguments << "/W4" << "/F268435456" << "/EHsc" << "/O2" << "/DONLINE_JUDGE" << path << "-o" << pathToCompiledProgram;
@@ -17,6 +19,7 @@ bool CppCompiler::compile( const QString & path, const QString & pathToCompiledP
     process.waitForStarted();
     process.waitForFinished();
     QByteArray a = process.readAllStandardOutput();
+//    qDebug() << a;
     const int exitCode = process.exitCode();
     return !exitCode;
 }
@@ -35,7 +38,9 @@ QSharedPointer<Compiler> makeCompiler(const QString &languageName)
 
 bool DelphiCompiler::compile( const QString & path, const QString & pathToCompiledProgram )
 {
-    QString program = "dcc32";
+    QSettings settings("config.ini", QSettings::IniFormat);
+    QString program = settings.value("delphi").toString();
+
     QStringList arguments;
     QString tmp = path;
     tmp.replace("/", "\\");
@@ -55,7 +60,9 @@ bool DelphiCompiler::compile( const QString & path, const QString & pathToCompil
 
 bool CSharpCompiler::compile( const QString & path, const QString & pathToCompiledProgram )
 {
-    QString program = "C:/Windows/Microsoft.NET/Framework/v2.0.50727/csc.exe";
+    QSettings settings("config.ini", QSettings::IniFormat);
+    QString program = settings.value("csharp").toString();
+
     QStringList arguments;
     QString tmp = path;
     QString tmp2 = pathToCompiledProgram.mid(0, pathToCompiledProgram.lastIndexOf('/'));
