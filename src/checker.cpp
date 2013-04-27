@@ -68,6 +68,7 @@ void Checker::checkSubmitStatus(int status)
         if(!QFile::exists(outputFile)) {
             printToStdout(QString("Test %1:\nNo output file").arg(testNumber));
             qApp->exit(0);
+            return;
         }
 
         QString program = contestFolder + "tasks/" + taskNumber + ".exe";
