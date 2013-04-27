@@ -14,6 +14,12 @@ void Debugger::run()
 {
     STARTUPINFO si = {};
     si.cb = sizeof(si);
+
+    si.hStdOutput = INVALID_HANDLE_VALUE;
+    si.hStdError = INVALID_HANDLE_VALUE;
+    si.hStdInput = INVALID_HANDLE_VALUE;
+    si.dwFlags = STARTF_USESTDHANDLES;
+
     DWORD creationFlags = NORMAL_PRIORITY_CLASS | CREATE_DEFAULT_ERROR_MODE;
     if(parameters.language != QLatin1String("c_sharp"))
         creationFlags |=  DEBUG_ONLY_THIS_PROCESS;
