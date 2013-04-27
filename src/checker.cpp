@@ -19,6 +19,7 @@ void Checker::processNextSubmission()
     {
         printToStdout("AC\n");
         qApp->exit(0);
+        return;
     }
 
     ++testNumber;
