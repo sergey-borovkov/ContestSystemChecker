@@ -37,7 +37,13 @@ void SubmissionProcess::checkProcess()
 
     if(status != Active)
     {
-        processFinished(status);
+
+        if(status == FailFinish)
+            processFinished(1);
+
+        if(status == Finished)
+            processFinished(0);
+
         return;
     }
 
@@ -92,8 +98,12 @@ void SubmissionProcess::processFinished(int exitState)
 {
     timer.stop();
     timeLapsed = 0;
-    if(!exitState)
+
+    if(!exitState) {
         emit finished(Accepted);
+        return;
+    }
+
     emit finished(WrongExitCode);
 }
 
