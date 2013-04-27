@@ -48,11 +48,10 @@ int main(int argc, char *argv[])
     testDirectory.cd(pathToSubmissionFolder);
 
     testDirectory.cd(QString("../../tasks/%1").arg(taskNumber));
+    testDirectory.setSorting(QDir::Name);
 
     QStringList tests = testDirectory.entryList(QStringList() << "*.in");
-    tests.sort();
     QStringList answers = testDirectory.entryList(QStringList() << "*.ans");
-    answers.sort();
 
     if(tests.size() != answers.size())
     {
