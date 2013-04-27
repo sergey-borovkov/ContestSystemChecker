@@ -58,7 +58,7 @@ void Checker::checkSubmitStatus(int status)
         printToStdout("Error\n");
         qApp->exit(0);
     }
-    else if(status == SubmissionProcess::RunTimeError)
+    else if(status == SubmissionProcess::RunTimeError || status == SubmissionProcess::WrongExitCode)
     {
         printToStdout(QString("Test %1:\nRuntime Error\n").arg(testNumber));
         qApp->exit(0);
@@ -94,6 +94,5 @@ void Checker::checkSubmitStatus(int status)
             printToStdout(QString("Test %1:\nWA\n").arg(testNumber));
             qApp->exit(0);
         }
-
     }
 }
