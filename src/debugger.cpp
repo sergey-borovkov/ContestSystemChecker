@@ -65,7 +65,7 @@ void Debugger::run()
         else if(event.dwDebugEventCode == EXIT_PROCESS_DEBUG_EVENT)
         {
             qDebug() << "Debugger exit...";
-            qApp->exit(0);
+            exit(0);
         }
 
         ContinueDebugEvent(event.dwProcessId, event.dwThreadId, dwStatus);
